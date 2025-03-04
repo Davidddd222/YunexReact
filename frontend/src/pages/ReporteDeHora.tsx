@@ -1,12 +1,15 @@
-// src/pages/ReporteDeHora.tsx
+import Header from "@/components/Header";
 
-const ReporteDeHora = () => {
+const ReporteDeHora: React.FC = () => {
   return (
-    <div>
-      <h1>Reporte de Hora</h1>
-      <p>Contenido de la página de Reporte de Hora</p>
-    </div>
-  )
-}
+        <div>
+        {/* Contenido de la página */}
+        <Header />
+        <h1>Reporte de Hora</h1>
+        <p>Contenido del reporte de hora...</p>
+      
+        </div>
+  );
+};
 
-export default ReporteDeHora
+export default ReporteDeHora;
