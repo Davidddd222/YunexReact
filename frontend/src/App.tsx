@@ -3,12 +3,12 @@ import { useAuth } from '@clerk/clerk-react';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/auth/sign-in/SignIn';
 import SignUpPage from './pages/auth/sign-up/SignUp';
-import ReporteDeHora from './pages/ReporteDeHora';
+import ReporteDeHora from './pages/ReporteDeHora/ReporteDeHora';
 import Laboratorio from './pages/Laboratorio/Laboratorio';
-import EHS from './pages/EHS';
-import Almacen from './pages/Almacen';
-import Vehiculos from './pages/Vehiculos';
-import Garantias from './pages/Garantias';
+import EHS from './pages/EHS/EHS';
+import Almacen from './pages/Almacen/Almacen';
+import Vehiculos from './pages/Vehiculos/Vehiculos';
+import Garantias from './pages/Garantias/Garantias';
 
 const App: React.FC = () => {
   const { isSignedIn, isLoaded } = useAuth();
