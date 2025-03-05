@@ -3,18 +3,8 @@ import { Link } from 'react-router-dom';  // Importar desde react-router-dom
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';  // Usar Clerk para React
 import { RiNotification2Line } from 'react-icons/ri';
 import { Button } from '@/components/ui/button';  // Importar el botón
-import { useState } from 'react';
 
 const Header = () => {
-  // Estado para controlar la visibilidad de los submenús
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-
-  // Función para alternar la visibilidad del submenú
-  const toggleSubmenu = (menu: string) => {
-    setOpenSubmenu(openSubmenu === menu ? null : menu);  // Si ya está abierto, lo cierra; si no, lo abre
-  };
-
-
   return (
     <div className="container mx-auto">
       <header className="w-full flex">
@@ -37,24 +27,9 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={() => toggleSubmenu('reporte')}
-                  className="text-base cursor-pointer font-medium hover:text-gray-300"
-                >
-                  Reporte de hora
-                </button>
-                {openSubmenu === 'reporte' && (
-                  <div className="absolute mt-2 bg-white  rounded-2xl shadow-lg w-48">
-                    <div className="py-1">
-                      <Link to="/reporte-de-hora/option1" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Reporte NumberOne
-                      </Link>
-                      <Link to="/reporte-de-hora/option2" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Reporte NumberTwo
-                      </Link>
-                    </div>
-                  </div>
-                )}
+                <Link to="/reporte-de-hora">
+                  <Button variant="link" className="text-base cursor-pointer">Reporte de hora</Button>
+                </Link>
               </li>
               <li>
                 <Link to="/laboratorio">
@@ -73,7 +48,7 @@ const Header = () => {
               </li>
               <li>
                 <Link to="/vehiculos">
-                  <Button variant="link" className="text-base cursor-pointer">Vehiculos</Button>
+                  <Button variant="link" className="text-base cursor-pointer">Vehículos</Button>
                 </Link>
               </li>
               <li>

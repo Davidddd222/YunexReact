@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import SignInPage from './pages/auth/sign-in/SignIn';
 import SignUpPage from './pages/auth/sign-up/SignUp';
 import ReporteDeHora from './pages/ReporteDeHora';
-import Laboratorio from './pages/Laboratorio';
+import Laboratorio from './pages/Laboratorio/Laboratorio';
 import EHS from './pages/EHS';
 import Almacen from './pages/Almacen';
 import Vehiculos from './pages/Vehiculos';
