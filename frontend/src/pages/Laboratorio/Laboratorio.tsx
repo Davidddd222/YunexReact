@@ -49,7 +49,7 @@ const Laboratorio = () => {
               <button
                 onClick={() => handleNavigation('reparaciones')}
                 className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'reparaciones' ? 'font-bold border-none rounded-xl bg-blue-600' : ''
+                  activeSection === 'reparaciones' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
                 }`}
               >
                 Reparaciones
