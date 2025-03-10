@@ -1,6 +1,6 @@
 "use client";
 
-// pages/lab.tsx (o donde tengas tu componente Lab)
+// pages/lab.tsx (o donde tengas tu componente Laboratorio)
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Reparaciones from './components/Reparaciones'; // Importa el componente Reparaciones
@@ -12,14 +12,14 @@ type Section = 'reparaciones' | 'balance' | 'general' | 'ensambles';
 
 const Laboratorio = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<Section>('reparaciones');
+  const [activeSection, setActiveSection] = useState<Section>('reparaciones'); // Sección activa
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen); // Cambia el estado del sidebar
   };
 
   const handleNavigation = (section: Section) => {
-    setActiveSection(section);
+    setActiveSection(section); // Cambia la sección activa cuando el usuario hace clic en el menú
   };
 
   return (
@@ -41,15 +41,17 @@ const Laboratorio = () => {
         <div
           className={`fixed lg:relative lg:translate-x-0 transform ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gray-800 text-white h-screen p-4`}
+          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white h-screen p-4`}
         >
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('reparaciones')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'reparaciones' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
+                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                  activeSection === 'reparaciones'
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
                 Reparaciones
@@ -58,8 +60,10 @@ const Laboratorio = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('balance')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'balance' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
+                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                  activeSection === 'balance'
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
                 Balance
@@ -68,8 +72,10 @@ const Laboratorio = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('general')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'general' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
+                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                  activeSection === 'general'
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
                 General
@@ -78,8 +84,10 @@ const Laboratorio = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('ensambles')}
-                className={`w-full p-2 text-left hover:text-gray-400 ${
-                  activeSection === 'ensambles' ? 'font-bold border-none rounded-sm bg-blue-600' : ''
+                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                  activeSection === 'ensambles'
+                    ? 'bg-blue-600 text-white'
+                    : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
                 Ensambles
@@ -90,24 +98,11 @@ const Laboratorio = () => {
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-semibold mb-4 text-center">Laboratorio</h1>
-
           {/* Secciones de contenido */}
-          {activeSection === 'reparaciones' && (
-            <Reparaciones />
-          )}
-
-          {activeSection === 'balance' && (
-            <Balance />
-          )}
-
-          {activeSection === 'general' && (
-            <General /> 
-          )}
-
-          {activeSection === 'ensambles' && (
-            <Ensambles />
-          )}
+          {activeSection === 'reparaciones' && <Reparaciones />}
+          {activeSection === 'balance' && <Balance />}
+          {activeSection === 'general' && <General />}
+          {activeSection === 'ensambles' && <Ensambles />}
         </div>
       </div>
     </div>
