@@ -66,7 +66,7 @@ const Laboratorio = () => {
                     : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
-                Balance
+                Balance (Inutilizado) {/* Hasta averiguar su funcionalidad */}
               </button>
             </li>
             <li className="mb-2">
@@ -78,7 +78,7 @@ const Laboratorio = () => {
                     : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
-                General
+                General (Inutilizado) {/* Hasta averiguar su funcionalidad */}
               </button>
             </li>
             <li className="mb-2">
@@ -90,7 +90,7 @@ const Laboratorio = () => {
                     : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
-                Ensambles
+                Ensambles {/* Terminar de averiguar su funcionalidad */}
               </button>
             </li>
           </ul>

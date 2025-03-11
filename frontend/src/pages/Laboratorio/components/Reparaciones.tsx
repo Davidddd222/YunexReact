@@ -5,15 +5,15 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetTitle,
 } from "@/components/ui/sheet"
 
 const Reparaciones: React.FC = () => {
   // Datos de ejemplo para la tabla
-  const reparacionesData = [
-    { id: 123, equipo: 'Computador HP', estado: 'En progreso', falla: 'Daño matriz' ,fecha: '2025-03-10', reparacionEstimada: '5' ,responsable: 'Juan Pérez' },
-    { id: 122, equipo: 'Computador Lenovo', estado: 'En revisión', falla: 'Daño matriz' ,fecha: '2025-03-10', reparacionEstimada: '1' ,responsable: 'Juan David' },
-    { id: 133, equipo: 'CPU 4127', estado: 'En progreso', falla: 'Daño matriz' ,fecha: '2025-03-10', reparacionEstimada: '2' ,responsable: 'Carlos Pérez' },
-  ];
+  const [reparacionesData, ] = useState([
+    { id: 123, equipo: 'Computador HP', estado: 'En progreso', falla: 'Daño matriz', fecha: '2025-03-10', reparacionEstimada: '5', responsable: 'Juan Pérez' },
+    { id: 122, equipo: 'Computador Lenovo', estado: 'En revisión', falla: 'Daño matriz', fecha: '2025-03-10', reparacionEstimada: '1', responsable: 'Juan David' },
+  ]);
 
   // Estado para el valor de búsqueda
   const [query, setQuery] = useState('');
@@ -38,7 +38,7 @@ const Reparaciones: React.FC = () => {
       );
       setFilteredReparaciones(filtered);
     }
-  }, [query]);
+  }, [query, reparacionesData]);
 
   return (
     <div>
@@ -56,6 +56,7 @@ const Reparaciones: React.FC = () => {
               Empezar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
+              <SheetTitle></SheetTitle>
               <EmpezarForm />
             </SheetContent>
           </Sheet>
@@ -68,6 +69,7 @@ const Reparaciones: React.FC = () => {
               Finalizar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
+              <SheetTitle></SheetTitle>
               <FinalizarForm />
             </SheetContent>
           </Sheet>

@@ -6,33 +6,6 @@ const EmpezarForm: React.FC = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 overflow-y-auto max-h-screen">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Formulario de Reparación</h1>
         <form className="space-y-6">
-          {/* Campo Nombre */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Nombre:
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              placeholder="Ingresa tu nombre"
-            />
-          </div>
-
-          {/* Campo Correo Electrónico */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              Correo Electrónico:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              placeholder="Ingresa tu correo electrónico"
-            />
-          </div>
 
           {/* Campo ID del equipo */}
           <div>
