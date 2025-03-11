@@ -1,8 +1,8 @@
 // src/components/Header.tsx
 import { Link } from 'react-router-dom';  // Importar desde react-router-dom
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';  // Usar Clerk para React
-import { RiNotification2Line } from 'react-icons/ri';
 import { Button } from '@/components/ui/button';  // Importar el botón
+import Notificaciones from './notificaciones/Notificaciones';
 
 const Header = () => {
   return (
@@ -68,9 +68,8 @@ const Header = () => {
               <UserButton />
             </SignedIn>
 
-            <RiNotification2Line 
-              className="text-black h-6 w-7 cursor-pointer hover:text-gray-300 transition-colors duration-300"
-            />
+            {/* Notificaciones */}
+            <Notificaciones />
           </div>
         </div>
       </header>
