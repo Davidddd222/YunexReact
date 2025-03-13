@@ -4,14 +4,20 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Documentos from './components/Documentos';
 import Soat from './components/Soat';
-import { FaChevronDown, FaChevronRight } from "react-icons/fa6"; // Importamos ambos íconos
+import SeguroObligatorio from './components/SeguroObligatorio'; // Importamos la opción de Seguro Obligatorio
+import PolizaRiesgo from './components/PolizaRiesgo';
+import RevisionPluma from './components/RevisionPluma';
+import RevisionTecno from './components/RevisionTecno';
+import { FaChevronDown, FaChevronRight } from "react-icons/fa6"; // Importamos los íconos
 
 type Section = 'soat' | 'documentos';
+type SoatOption = 'seguro-obligatorio' | 'poliza-todo-riesgo' | 'revision-tecnomecanica' | 'revision-pluma-articulada' | 'soat';
 
 const Vehiculos = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>('soat'); // Sección activa
   const [isSoatMenuOpen, setIsSoatMenuOpen] = useState(false); // Estado para manejar el submenú de Soat
+  const [activeSoatOption, setActiveSoatOption] = useState<SoatOption | null>(null); // Estado para manejar la opción activa en Soat
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Cambia el estado del sidebar
@@ -21,11 +27,16 @@ const Vehiculos = () => {
     setActiveSection(section); // Cambia la sección activa cuando el usuario hace clic en el menú
     if (section !== 'soat') {
       setIsSoatMenuOpen(false); // Cierra el submenú de Soat si se cambia de sección
+      setActiveSoatOption(null); // Resetea la opción activa de Soat
     }
   };
 
   const toggleSoatMenu = () => {
     setIsSoatMenuOpen(!isSoatMenuOpen); // Alterna el estado del submenú de Soat
+  };
+
+  const handleSoatOptionChange = (option: SoatOption) => {
+    setActiveSoatOption(option); // Cambia la opción activa de Soat
   };
 
   return (
@@ -45,15 +56,13 @@ const Vehiculos = () => {
 
         {/* Sidebar */}
         <div
-          className={`fixed lg:relative lg:translate-x-0 transform ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white h-screen p-4`}
+          className={`fixed lg:relative lg:translate-x-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white h-screen p-4`}
         >
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
             {/* Opción Soat con submenú */}
             <li className="mb-2">
-            <button
+              <button
                 onClick={() => {
                   handleNavigation('soat');
                   toggleSoatMenu(); // Alternar la visibilidad del submenú de Soat
@@ -75,44 +84,51 @@ const Vehiculos = () => {
               {/* Submenú de Soat */}
               {isSoatMenuOpen && (
                 <ul
-                className={`pl-4 mt-2 bg-transparent rounded-md transition-all duration-300 ease-in-out ${
-                  isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
-                } overflow-hidden`} 
-              >
-                <li>
-                  <a
-                    href="seguro-obligatorio"
-                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    SEGURO OBLIGATORIO
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    POLIZA TODO RIESGO
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    REVISIÓN TECNOMECÁNICA
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    REVISIÓN PLUMA ARTICULADA
-                  </a>
-                </li>
-              </ul>
-              
+                  className={`pl-4 mt-2 bg-transparent rounded-md border-2 transition-all duration-300 ease-in-out ${
+                    isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
+                  } overflow-hidden`}
+                >
+                  <li>
+                    <a
+                      onClick={() => handleSoatOptionChange('soat')}
+                      className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      SOAT
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => handleSoatOptionChange('seguro-obligatorio')}
+                      className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      SEGURO OBLIGATORIO
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => handleSoatOptionChange('poliza-todo-riesgo')}
+                      className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      POLIZA TODO RIESGO
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => handleSoatOptionChange('revision-tecnomecanica')}
+                      className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      REVISIÓN TECNOMECÁNICA
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => handleSoatOptionChange('revision-pluma-articulada')}
+                      className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      REVISIÓN PLUMA ARTICULADA
+                    </a>
+                  </li>
+                </ul>
               )}
             </li>
 
@@ -135,7 +151,15 @@ const Vehiculos = () => {
         {/* Contenido principal */}
         <div className="flex-1 p-4">
           {/* Secciones de contenido */}
-          {activeSection === 'soat' && <Soat />}
+          {activeSection === 'soat' && (
+            <div>
+              {activeSoatOption === 'soat' && <Soat />}
+              {activeSoatOption === 'seguro-obligatorio' && <SeguroObligatorio />}
+              {activeSoatOption === 'poliza-todo-riesgo' && <PolizaRiesgo />}
+              {activeSoatOption === 'revision-tecnomecanica' && <RevisionTecno />}
+              {activeSoatOption === 'revision-pluma-articulada' && <RevisionPluma />}
+            </div>
+          )}
           {activeSection === 'documentos' && <Documentos />}
         </div>
       </div>
