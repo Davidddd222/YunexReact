@@ -1,6 +1,5 @@
 "use client";
 
-// pages/lab.tsx (o donde tengas tu componente Laboratorio)
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Documentos from './components/Documentos';
@@ -82,7 +81,7 @@ const Vehiculos = () => {
               >
                 <li>
                   <a
-                    href="#"
+                    href="seguro-obligatorio"
                     className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                   >
                     SEGURO OBLIGATORIO

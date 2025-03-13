@@ -9,6 +9,7 @@ import EHS from './pages/EHS/EHS';
 import Almacen from './pages/Almacen/Almacen';
 import Vehiculos from './pages/Vehiculos/Vehiculos';
 import Garantias from './pages/Garantias/Garantias';
+import SeguroObligatorio from './pages/Vehiculos/components/SeguroObligatorio';
 
 const App: React.FC = () => {
   const { isSignedIn, isLoaded } = useAuth();
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <Route path="/almacen" element={<Almacen />} />  {/* Ruta para Almacen */}
         <Route path="/vehiculos" element={<Vehiculos />} />  {/* Ruta para Vehicles */}
         <Route path="/garantias" element={<Garantias />} />  {/* Ruta para Garantias */}
+        <Route path="/seguro-obligatorio" element={<SeguroObligatorio />} />  {/* Ruta para Garantias */}
       </Routes>
     </div>
   );
