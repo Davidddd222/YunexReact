@@ -5,12 +5,14 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Documentos from './components/Documentos';
 import Soat from './components/Soat';
+import { FaChevronDown, FaChevronRight } from "react-icons/fa6"; // Importamos ambos íconos
 
-type Section ='soat' | 'documentos';
+type Section = 'soat' | 'documentos';
 
 const Vehiculos = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>('soat'); // Sección activa
+  const [isSoatMenuOpen, setIsSoatMenuOpen] = useState(false); // Estado para manejar el submenú de Soat
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Cambia el estado del sidebar
@@ -18,6 +20,13 @@ const Vehiculos = () => {
 
   const handleNavigation = (section: Section) => {
     setActiveSection(section); // Cambia la sección activa cuando el usuario hace clic en el menú
+    if (section !== 'soat') {
+      setIsSoatMenuOpen(false); // Cierra el submenú de Soat si se cambia de sección
+    }
+  };
+
+  const toggleSoatMenu = () => {
+    setIsSoatMenuOpen(!isSoatMenuOpen); // Alterna el estado del submenú de Soat
   };
 
   return (
@@ -43,19 +52,72 @@ const Vehiculos = () => {
         >
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
-          <li className="mb-2">
-              <button
-                onClick={() => handleNavigation('soat')}
+            {/* Opción Soat con submenú */}
+            <li className="mb-2">
+            <button
+                onClick={() => {
+                  handleNavigation('soat');
+                  toggleSoatMenu(); // Alternar la visibilidad del submenú de Soat
+                }}
                 className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
                   activeSection === 'soat'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
-                }`}
+                } flex justify-between`} // Usamos flex y justify-between para distribuir el espacio
               >
-                   
-                 Soat
+                Soat
+                {isSoatMenuOpen ? (
+                  <FaChevronDown className="inline ml-2 mt-1" />
+                ) : (
+                  <FaChevronRight className="inline ml-2 mt-1" />
+                )}
               </button>
+
+              {/* Submenú de Soat */}
+              {isSoatMenuOpen && (
+                <ul
+                className={`pl-4 mt-2 bg-transparent rounded-md transition-all duration-300 ease-in-out ${
+                  isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
+                } overflow-hidden`} 
+              >
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    SEGURO OBLIGATORIO
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    POLIZA TODO RIESGO
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    REVISIÓN TECNOMECÁNICA
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    REVISIÓN PLUMA ARTICULADA
+                  </a>
+                </li>
+              </ul>
+              
+              )}
             </li>
+
+            {/* Opción Documentos */}
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('documentos')}
@@ -65,7 +127,7 @@ const Vehiculos = () => {
                     : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
-                Documentos 
+                Documentos
               </button>
             </li>
           </ul>
@@ -74,7 +136,7 @@ const Vehiculos = () => {
         {/* Contenido principal */}
         <div className="flex-1 p-4">
           {/* Secciones de contenido */}
-          {activeSection === 'soat' && <Soat />} 
+          {activeSection === 'soat' && <Soat />}
           {activeSection === 'documentos' && <Documentos />}
         </div>
       </div>
