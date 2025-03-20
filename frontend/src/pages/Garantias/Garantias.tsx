@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import { useState } from 'react';
-import SubArchivos from "./components/archivos";
+import SubArchivos from "./components/Archivos";
 import SubBalance from "./components/subBalance";
 import SubGarantias from "./components/subGarantias";
 import SubGeneral from "./components/subGeneral";

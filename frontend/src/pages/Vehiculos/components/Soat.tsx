@@ -18,8 +18,8 @@ const Soat: React.FC = () => {
       // Estado para el valor de búsqueda
       const [query, setQuery] = useState('');
     
-      // Estado para los resultados filtrados
-      const [filteredReparaciones, setFilteredReparaciones] = useState(reparacionesData);
+      // Estado para los resultados filtrados ¡OJO! filteredReparaciones
+      const [, setFilteredSoat] = useState(reparacionesData);
     
       // Manejar el cambio en el input de búsqueda
       const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,13 +30,13 @@ const Soat: React.FC = () => {
       // Filtrar las reparaciones basadas en el query (ahora filtra por ID)
       useEffect(() => {
         if (query === '') {
-          setFilteredReparaciones(reparacionesData);
+          setFilteredSoat(reparacionesData);
         } else {
           // Filtra por ID, convierte el query a número
           const filtered = reparacionesData.filter(item =>
             item.id.toString().includes(query)  // Compara el ID convertido a string con el query
           );
-          setFilteredReparaciones(filtered);
+          setFilteredSoat(filtered);
         }
       }, [query, reparacionesData]);
     return (

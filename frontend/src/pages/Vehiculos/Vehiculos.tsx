@@ -15,7 +15,7 @@ type SoatOption = 'seguro-obligatorio' | 'poliza-todo-riesgo' | 'revision-tecnom
 
 const Vehiculos = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<Section>('soat'); // Sección activa
+  const [activeSection, setActiveSection] = useState<Section>('documentos'); // Sección activa
   const [isSoatMenuOpen, setIsSoatMenuOpen] = useState(false); // Estado para manejar el submenú de Soat
   const [activeSoatOption, setActiveSoatOption] = useState<SoatOption | null>(null); // Estado para manejar la opción activa en Soat
 
