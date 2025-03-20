@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { CiFolderOn } from 'react-icons/ci';
+import { CiFolderOn, CiEdit } from 'react-icons/ci';
 import { Button } from '@/components/ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogFooter,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
-  
+import { DialogDemo } from './SeguridadActiva';
 
 const Documentos: React.FC = () => {
   // Datos de ejemplo para la tabla (sin botón directo en los datos)
   const [reparacionesData, ] = useState([
-    { placa: "ABC 123", vehiculo: 'Computador HP', marca: 'En progreso', tipoCombustible: 'Daño matriz', seguridadActiva: 'x', seguridadPasiva: 'x', mantenimientosRealizados: 'Juan Pérez' },
-    { placa: "EFG 123", vehiculo: 'Computador HP', marca: 'En progreso', tipoCombustible: 'Daño matriz', seguridadActiva: 'x', seguridadPasiva: 'x', mantenimientosRealizados: 'Juan Pérez' },
+    { placa: "ABC 123", vehiculo: 'Computador HP', marca: 'En progreso', tipoCombustible: 'Daño matriz',  mantenimientosRealizados: 'Juan Pérez' },
+    { placa: "EFG 123", vehiculo: 'Computador HP', marca: 'En progreso', tipoCombustible: 'Daño matriz',  mantenimientosRealizados: 'Juan Pérez' },
   ]);
 
   // Estado para el valor de búsqueda
@@ -89,33 +80,30 @@ const Documentos: React.FC = () => {
                 <td className="px-4 py-2">{item.vehiculo}</td>
                 <td className="px-4 py-2 text-center">{item.marca}</td>
                 <td className="px-4 py-2 text-center">{item.tipoCombustible}</td>
-                <td className="px-4 py-2 text-center">{item.seguridadActiva}</td>
-                <td className="px-4 py-2 text-center">{item.seguridadPasiva}</td>
+                <td className="px-4 py-2 text-center">
+                    <Button className="cursor-pointer" onClick={() => handleOpenModal(item.placa)}>
+                        <CiEdit />
+                    </Button>
+                </td>
+
+                <td className="px-4 py-2 text-center">
+                    <Button className="cursor-pointer" onClick={() => handleOpenModal(item.placa)}>
+                        <CiEdit />
+                    </Button>
+                </td>
                 <td className="px-4 py-2 text-center">{item.mantenimientosRealizados}</td>
                 <td className="px-4 py-2 text-center">
-                  {/* Botón que siempre estará presente */}
-                  <Button className='cursor-pointer' onClick={() => handleOpenModal(item.placa)}>
-                    <CiFolderOn />
-                  </Button>
+                                      {/* Botón que siempre estará presente */}
+                    <Button className='cursor-pointer' onClick={() => handleOpenModal(item.placa)}>
+                        <CiFolderOn />
+                    </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <Dialog>
-  <DialogTrigger> <CiFolderOn />Open</DialogTrigger>
-  <DialogContent className='bg-white'>
-    <DialogHeader>
-      <DialogTitle>Editar seguridad activa</DialogTitle>
-      <DialogDescription>
-        <h1>Sistema de frenado</h1>
-      </DialogDescription>
-    </DialogHeader> 
-    <DialogFooter>
-          <Button type="submit" className='bg-blue-600' >Enviar</Button>
-        </DialogFooter>
-  </DialogContent>
-</Dialog>
+
+<DialogDemo/>
 
       </div>
     </div>
