@@ -1,40 +1,13 @@
-import {  CiEdit } from 'react-icons/ci';
-import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogFooter,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
+import React from 'react';
 
 
-export function DialogDemo() {
-    return (
+const SeguridadActiva: React.FC = () => {
+  return (
+    <div>
+      <h1>Seguridad Activa</h1>
+      <p>Bienvenido a la página de Seguridad Activa.</p>
+    </div>
+  );
+};
 
-<Dialog>
-  <DialogTrigger> <CiEdit/> </DialogTrigger>
-   <DialogContent className="bg-white">
-    <DialogHeader>
-     <DialogTitle className="font-semibold text-xl text-center">Editar seguridad activa</DialogTitle>
-      <DialogDescription className="">
-        Sistema de frenado<br />
-        Sistema de dirección<br />
-        Sistema de suspención<br />
-        Neumaticos<br />
-        Iluminación<br />
-        Sistema Eléctrico<br />
-        Climatización<br />
-        Espejos<br />
-        Sistema control estabilidad
-     </DialogDescription>
-    </DialogHeader>
-   <DialogFooter> <Button type="submit" className="bg-blue-600">Enviar</Button>
-  </DialogFooter>
- </DialogContent>
-</Dialog>
-
-)
-}
+export default SeguridadActiva;

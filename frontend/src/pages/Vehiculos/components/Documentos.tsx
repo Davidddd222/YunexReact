@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { CiFolderOn, CiEdit } from 'react-icons/ci';
-import { Button } from '@/components/ui/button';
-import { DialogDemo } from './SeguridadActiva';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import EmpezarForm from '@/pages/Laboratorio/components/EmpezarForm';
+import SeguridadActiva from './SeguridadActiva';
 
 const Documentos: React.FC = () => {
   // Datos de ejemplo para la tabla (sin botón directo en los datos)
@@ -34,14 +41,6 @@ const Documentos: React.FC = () => {
       setFilteredDocumentos(filtered);
     }
   }, [query, reparacionesData]);
-
-  // Componente para el botón que abre el modal
-  const handleOpenModal = (placa: string) => {
-    console.log(`Abriendo modal para el vehículo con placa ${placa}`);
-    // Aquí se abriría el modal, por ejemplo:
-    // setShowModal(true); // Si usas un estado para mostrar el modal
-  };
-
   return (
     <div>
       <h1 className="text-2xl font-semibold mb-4">Reparaciones</h1>
@@ -81,30 +80,59 @@ const Documentos: React.FC = () => {
                 <td className="px-4 py-2 text-center">{item.marca}</td>
                 <td className="px-4 py-2 text-center">{item.tipoCombustible}</td>
                 <td className="px-4 py-2 text-center">
-                    <Button className="cursor-pointer" onClick={() => handleOpenModal(item.placa)}>
-                        <CiEdit />
-                    </Button>
+                <Sheet>
+                 <SheetTrigger
+                  className="border border-blue-500 mr-4 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md 
+                             transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    <CiEdit />
+                     </SheetTrigger>
+                      <SheetContent className="w-[400px] sm:w-[540px] bg-white">
+                       <SheetTitle>
+                        <SheetDescription>
+                        </SheetDescription>
+                       </SheetTitle> 
+                      <SeguridadActiva />
+                     </SheetContent>
+                    </Sheet>
                 </td>
 
                 <td className="px-4 py-2 text-center">
-                    <Button className="cursor-pointer" onClick={() => handleOpenModal(item.placa)}>
-                        <CiEdit />
-                    </Button>
+                <Sheet>
+                 <SheetTrigger
+                  className="border border-blue-500 mr-4 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md 
+                             transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    <CiEdit />
+                     </SheetTrigger>
+                      <SheetContent className="w-[400px] sm:w-[540px] bg-white">
+                       <SheetTitle>
+                        <SheetDescription>
+                        </SheetDescription>
+                       </SheetTitle> 
+                      <EmpezarForm />
+                     </SheetContent>
+                    </Sheet>
                 </td>
                 <td className="px-4 py-2 text-center">{item.mantenimientosRealizados}</td>
                 <td className="px-4 py-2 text-center">
-                                      {/* Botón que siempre estará presente */}
-                    <Button className='cursor-pointer' onClick={() => handleOpenModal(item.placa)}>
-                        <CiFolderOn />
-                    </Button>
+                <Sheet>
+                 <SheetTrigger
+                   className="border border-blue-500 mr-4 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md 
+                              transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                     <CiFolderOn />
+                      </SheetTrigger>
+                       <SheetContent className="w-[400px] sm:w-[540px] bg-white">
+                        <SheetTitle>
+                         <SheetDescription>
+                         </SheetDescription>
+                       </SheetTitle> 
+                      <EmpezarForm />
+                     </SheetContent>
+                    </Sheet>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-<DialogDemo/>
-
       </div>
     </div>
   );

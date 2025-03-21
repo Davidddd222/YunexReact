@@ -3,6 +3,7 @@ import EmpezarForm from './EmpezarForm';
 import FinalizarForm from './FinalizarForm';
 import {
   Sheet,
+  SheetDescription,
   SheetContent,
   SheetTrigger,
   SheetTitle,
@@ -56,7 +57,10 @@ const Reparaciones: React.FC = () => {
               Empezar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
-              <SheetTitle></SheetTitle>
+              <SheetTitle>
+              <SheetDescription>
+              </SheetDescription>
+              </SheetTitle>
               <EmpezarForm />
             </SheetContent>
           </Sheet>
@@ -69,7 +73,10 @@ const Reparaciones: React.FC = () => {
               Finalizar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
-              <SheetTitle></SheetTitle>
+              <SheetTitle>
+              <SheetDescription>
+              </SheetDescription>
+              </SheetTitle>
               <FinalizarForm />
             </SheetContent>
           </Sheet>
