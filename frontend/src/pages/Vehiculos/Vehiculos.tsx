@@ -61,36 +61,37 @@ const Vehiculos = () => {
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
             {/* Opción Soat con submenú */}
-            <li className="mb-2">
-              <button
-                onClick={() => {
-                  handleNavigation('soat');
-                  toggleSoatMenu(); // Alternar la visibilidad del submenú de Soat
-                }}
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
-                  activeSection === 'soat'
-                    ? 'bg-blue-600 text-white'
-                    : 'hover:bg-blue-700 hover:text-white'
-                } flex justify-between`} // Usamos flex y justify-between para distribuir el espacio
-              >
-                Soat
-                {isSoatMenuOpen ? (
-                  <FaChevronDown className="inline ml-2 mt-1" />
-                ) : (
-                  <FaChevronRight className="inline ml-2 mt-1" />
-                )}
-              </button>
+            {/* Opción Soat con submenú */}
+<li className="mb-2">
+  <button
+    onClick={() => toggleSoatMenu()} // Solo alternamos el estado del submenú, sin cambiar la sección activa
+    className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+      activeSection === 'soat'
+        ? 'bg-blue-600 text-white'
+        : 'hover:bg-blue-700 hover:text-white'
+    } flex justify-between`} // Usamos flex y justify-between para distribuir el espacio
+  >
+    Soat
+    {isSoatMenuOpen ? (
+      <FaChevronDown className="inline ml-2 mt-1" />
+    ) : (
+      <FaChevronRight className="inline ml-2 mt-1" />
+    )}
+  </button>
 
-              {/* Submenú de Soat */}
-              {isSoatMenuOpen && (
-                <ul
-                  className={`pl-4 mt-2 bg-transparent rounded-md border-2 transition-all duration-300 ease-in-out ${
-                    isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
-                  } overflow-hidden`}
-                >
+  {/* Submenú de Soat */}
+  {isSoatMenuOpen && (
+    <ul
+      className={`pl-4 mt-2 bg-transparent rounded-md border-2 transition-all duration-300 ease-in-out ${
+        isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
+      } overflow-hidden`}
+    >
                   <li>
                     <a
-                      onClick={() => handleSoatOptionChange('soat')}
+                      onClick={() => {
+                        handleNavigation('soat'); // Cambia la sección activa a "soat"
+                        handleSoatOptionChange('soat'); // Cambia la opción activa de Soat
+                      }}
                       className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                     >
                       SOAT
@@ -98,7 +99,10 @@ const Vehiculos = () => {
                   </li>
                   <li>
                     <a
-                      onClick={() => handleSoatOptionChange('seguro-obligatorio')}
+                      onClick={() => {
+                        handleNavigation('soat'); // Cambia la sección activa a "soat"
+                        handleSoatOptionChange('seguro-obligatorio');
+                      }}
                       className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                     >
                       SEGURO OBLIGATORIO
@@ -106,7 +110,10 @@ const Vehiculos = () => {
                   </li>
                   <li>
                     <a
-                      onClick={() => handleSoatOptionChange('poliza-todo-riesgo')}
+                      onClick={() => {
+                        handleNavigation('soat'); // Cambia la sección activa a "soat"
+                        handleSoatOptionChange('poliza-todo-riesgo');
+                      }}
                       className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                     >
                       POLIZA TODO RIESGO
@@ -114,7 +121,10 @@ const Vehiculos = () => {
                   </li>
                   <li>
                     <a
-                      onClick={() => handleSoatOptionChange('revision-tecnomecanica')}
+                      onClick={() => {
+                        handleNavigation('soat'); // Cambia la sección activa a "soat"
+                        handleSoatOptionChange('revision-tecnomecanica');
+                      }}
                       className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                     >
                       REVISIÓN TECNOMECÁNICA
@@ -122,7 +132,10 @@ const Vehiculos = () => {
                   </li>
                   <li>
                     <a
-                      onClick={() => handleSoatOptionChange('revision-pluma-articulada')}
+                      onClick={() => {
+                        handleNavigation('soat'); // Cambia la sección activa a "soat"
+                        handleSoatOptionChange('revision-pluma-articulada');
+                      }}
                       className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
                     >
                       REVISIÓN PLUMA ARTICULADA
@@ -131,7 +144,6 @@ const Vehiculos = () => {
                 </ul>
               )}
             </li>
-
             {/* Opción Documentos */}
             <li className="mb-2">
               <button

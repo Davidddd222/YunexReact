@@ -7,26 +7,45 @@ const Notificaciones: React.FC = () => {
       <Popover>
         <PopoverTrigger>
           <RiNotification2Line
-            className="text-black h-6 w-7 cursor-pointer hover:text-gray-300 transition-colors duration-300"
+            className="text-gray-600 h-6 w-6 cursor-pointer hover:text-gray-800 transition-colors duration-200"
           />
         </PopoverTrigger>
-        <PopoverContent className="w-72 p-4 mr-2 bg-white shadow-lg rounded-lg">
-          {/* Título */}
-          <h3 className="font-semibold text-lg text-gray-700 mb-2">Notificaciones</h3>
+        <PopoverContent 
+          className="w-80 p-0 bg-white shadow-xl rounded-md border border-gray-100 mr-4 mt-2 overflow-hidden"
+          align="end"
+        >
+          {/* Header */}
+          <div className="border-b border-gray-100 px-4 py-3">
+            <h3 className="font-medium text-gray-900">Notificaciones</h3>
+          </div>
 
-          {/* Lista de notificaciones */}
-          <div className="space-y-2">
-            {/* Notificación 1 de ejemplo */}
-            <div className="flex justify-between items-center">
-              <div className="text-sm text-gray-600">Notificación de ejemplo</div>
-              <span className="text-xs text-gray-400">Hace 5 min</span>
+          {/* Lista */}
+          <div className="divide-y divide-gray-100">
+            {/* Item de ejemplo */}
+            <div className="px-4 py-3 hover:bg-gray-50 transition-colors">
+              <div className="flex justify-between items-start">
+                <p className="text-sm text-gray-700">Nueva actualización disponible</p>
+                <span className="text-xs text-gray-400">2 min</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Versión 2.3.1</p>
+            </div>
+
+            {/* Item de ejemplo 2 */}
+            <div className="px-4 py-3 hover:bg-gray-50 transition-colors">
+              <div className="flex justify-between items-start">
+                <p className="text-sm text-gray-700">Mensaje recibido</p>
+                <span className="text-xs text-gray-400">1h</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">De: Soporte técnico</p>
             </div>
           </div>
 
-          {/* Botón para ver más */}
-          <button className="mt-3 cursor-pointer text-blue-500 text-sm hover:text-blue-700">
-            Ver más
-          </button>
+          {/* Footer */}
+          <div className="border-t border-gray-100 px-4 py-2 text-center">
+            <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+              Ver todas
+            </button>
+          </div>
         </PopoverContent>
       </Popover>
     </div>

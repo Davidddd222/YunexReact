@@ -7,8 +7,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import EmpezarForm from '@/pages/Laboratorio/components/EmpezarForm';
 import SeguridadActiva from './SeguridadActiva';
+import SeguridadPasiva from './SeguridadPasiva';
+import ArchivosDocuments from './ArchivosDocuments';
 
 const Documentos: React.FC = () => {
   // Datos de ejemplo para la tabla (sin botón directo en los datos)
@@ -108,7 +109,7 @@ const Documentos: React.FC = () => {
                         <SheetDescription>
                         </SheetDescription>
                        </SheetTitle> 
-                      <EmpezarForm />
+                       <SeguridadPasiva />
                      </SheetContent>
                     </Sheet>
                 </td>
@@ -125,7 +126,7 @@ const Documentos: React.FC = () => {
                          <SheetDescription>
                          </SheetDescription>
                        </SheetTitle> 
-                      <EmpezarForm />
+                      <ArchivosDocuments />
                      </SheetContent>
                     </Sheet>
                 </td>
