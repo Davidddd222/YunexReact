@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Search from '@/components/ui/search';
 import { Sheet, SheetContent,SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import EmpezarForm from '@/pages/Laboratorio/components/EmpezarForm';
+import EstadoRiesgo from '@/components/ui/estadoRiesgo';
 
 const SeguroObligatorio: React.FC = () => {
     const [reparacionesData] = useState([
@@ -31,11 +32,16 @@ const [filteredDocumentos, setFilteredDocumentos] = useState(reparacionesData);
 
            <div className="flex-1 ">
            <Search
-  data={reparacionesData}
-  setFilteredData={setFilteredDocumentos}
-/>
-          
-        </div>
+            data={reparacionesData}
+            setFilteredData={setFilteredDocumentos}
+          />
+          </div>
+          <div className="flex space-x-4">
+            <EstadoRiesgo estado="VENCIDO" />
+            <EstadoRiesgo estado="POR VENCER" />
+            <EstadoRiesgo estado="AL DÍA" />
+          </div>
+
        </div>
        <div className="overflow-x-auto mt-6">
         <table className="min-w-full table-auto border-collapse">

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import EmpezarForm from '@/pages/Laboratorio/components/EmpezarForm';
 import Search from '@/components/ui/search';
+import EstadoRiesgo from '@/components/ui/estadoRiesgo';
 
 const Soat: React.FC = () => {
   const [reparacionesData] = useState([
@@ -45,6 +46,11 @@ const Soat: React.FC = () => {
         setFilteredData={setFilteredDocumentos}
         />
         </div>
+        <div className="flex space-x-4">
+            <EstadoRiesgo estado="VENCIDO" />
+            <EstadoRiesgo estado="POR VENCER" />
+            <EstadoRiesgo estado="AL DÍA" />
+          </div>
       </div>
 
       <div className="overflow-x-auto mt-6">
