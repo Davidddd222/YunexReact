@@ -43,8 +43,8 @@ const Reparaciones: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">Reparaciones</h1>
-      <p className="mb-6">Bienvenido a la página de reparaciones.</p>
+      <h1 className='text-3xl font-bold text-center text-gray-900 mb-2'>REPARACIONES</h1>
+      <p className='text-xl font-semibold text-center text-gray-900 mb-6'>Bienvenido a la página de reparaciones.</p>
 
       {/* Contenedor para alinear los botones a la izquierda y el campo de búsqueda en el centro */}
       <div className="flex items-center justify-between mb-6">

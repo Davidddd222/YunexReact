@@ -53,7 +53,7 @@ const Garantias = () => {
                     : 'hover:bg-blue-700 hover:text-white'
                 }`}
               >
-                Garantias
+                Garantías
               </button>
             </li>
             <li className="mb-2">
