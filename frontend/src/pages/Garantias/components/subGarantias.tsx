@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import EmpezarForm from '@/pages/Laboratorio/components/EmpezarForm';
+import NewClient from './NewClient';
 import {
   Sheet,
   SheetContent,
@@ -62,7 +62,7 @@ const SubGarantias: React.FC = () => {
                      <SheetDescription>
                   </SheetDescription>
                  </SheetTitle>
-                <EmpezarForm />
+                <NewClient />
                </SheetContent>
               </Sheet>
 
