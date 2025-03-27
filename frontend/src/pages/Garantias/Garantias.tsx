@@ -2,16 +2,22 @@
 
 import Header from "@/components/Header";
 import { useState } from 'react';
-import SubArchivos from "./components/Archivos";
 import SubBalance from "./components/subBalance";
 import SubGarantias from "./components/subGarantias";
 import SubGeneral from "./components/subGeneral";
+import { FaChevronDown, FaChevronRight } from "react-icons/fa6";
+import Formatos from "./components/Formatos";
+import Procesos from "./components/Procesos";
+import HistorialModulos from "./components/HistorialModulos";
 
 type Section = 'subGarantias' | 'subGeneral' | 'subBalance' | 'archivos';
+type SoatOption = 'formatos' | 'procesos' | 'historial-modulos' ;
 
 const Garantias = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<Section>('subGarantias'); // Sección activa
+    const [isSoatMenuOpen, setIsSoatMenuOpen] = useState(false); // Estado para manejar el submenú de Soat
+    const [activeSoatOption, setActiveSoatOption] = useState<SoatOption | null>(null); // Estado para manejar la opción activa en Soat
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen); // Cambia el estado del sidebar
@@ -19,6 +25,18 @@ const Garantias = () => {
 
   const handleNavigation = (section: Section) => {
     setActiveSection(section); // Cambia la sección activa cuando el usuario hace clic en el menú
+    if (section !== 'archivos') {
+      setIsSoatMenuOpen(false); // Cierra el submenú de Soat si se cambia de sección
+      setActiveSoatOption(null); // Resetea la opción activa de Soat
+    }
+  };
+
+  const toggleSoatMenu = () => {
+    setIsSoatMenuOpen(!isSoatMenuOpen); // Alterna el estado del submenú de Soat
+  };
+
+  const handleSoatOptionChange = (option: SoatOption) => {
+    setActiveSoatOption(option); // Cambia la opción activa de Soat
   };
 
   return (
@@ -82,26 +100,80 @@ const Garantias = () => {
             </li>
             <li className="mb-2">
               <button
-                onClick={() => handleNavigation('archivos')}
+                onClick={() => toggleSoatMenu()} // Solo alternamos el estado del submenú, sin cambiar la sección activa
                 className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
                   activeSection === 'archivos'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
-                }`}
+                } flex justify-between`} // Usamos flex y justify-between para distribuir el espacio
               >
-                Archivos {/* Terminar de averiguar su funcionalidad */}
+                Archivos
+                {isSoatMenuOpen ? (
+                  <FaChevronDown className="inline ml-2 mt-1" />
+                ) : (
+                  <FaChevronRight className="inline ml-2 mt-1" />
+                )}
               </button>
-            </li>
+            
+              {/* Submenú de Soat */}
+              {isSoatMenuOpen && (
+                <ul
+                  className={`pl-4 mt-2 bg-transparent rounded-md border-2 transition-all duration-300 ease-in-out ${
+                    isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
+                  } overflow-hidden`}
+                >
+                              <li>
+                                <a
+                                  onClick={() => {
+                                    handleNavigation('archivos'); // Cambia la sección activa a "soat"
+                                    handleSoatOptionChange('formatos');
+                                  }}
+                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                  FORMATOS
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  onClick={() => {
+                                    handleNavigation('archivos'); // Cambia la sección activa a "soat"
+                                    handleSoatOptionChange('procesos');
+                                  }}
+                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                  PROCESOS
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  onClick={() => {
+                                    handleNavigation('archivos'); // Cambia la sección activa a "soat"
+                                    handleSoatOptionChange('historial-modulos');
+                                  }}
+                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                >
+                                   HITORIAL DE MÓDULOS
+                                </a>
+                              </li>
+                            </ul>
+                          )}
+                        </li>
           </ul>
         </div>
 
         {/* Contenido principal */}
         <div className="flex-1 p-4">
           {/* Secciones de contenido */}
+          {activeSection === 'archivos' && (
+            <div>
+              {activeSoatOption === 'formatos' && <Formatos />}
+              {activeSoatOption === 'procesos' && <Procesos />}
+              {activeSoatOption === 'historial-modulos' && <HistorialModulos />}
+            </div>
+            )}
           {activeSection === 'subGarantias' && <SubGarantias />}
           {activeSection === 'subGeneral' && <SubGeneral />}
           {activeSection === 'subBalance' && <SubBalance />}
-          {activeSection === 'archivos' && <SubArchivos />}
         </div>
       </div>
     </div>

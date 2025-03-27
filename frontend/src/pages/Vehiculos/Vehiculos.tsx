@@ -61,7 +61,6 @@ const Vehiculos = () => {
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
             {/* Opción Soat con submenú */}
-            {/* Opción Soat con submenú */}
 <li className="mb-2">
   <button
     onClick={() => toggleSoatMenu()} // Solo alternamos el estado del submenú, sin cambiar la sección activa
