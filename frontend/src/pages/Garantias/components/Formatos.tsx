@@ -20,7 +20,7 @@ const [filteredDocumentos, setFilteredDocumentos] = useState(reparacionesData);
     return (
         <div>
             <h1 className='text-3xl font-bold text-center text-gray-900 mb-2'>FORMATOS</h1>
-            <p className='text-xl font-semibold text-center text-gray-900 mb-6'>Carpetas</p>
+            <p  >Carpetas</p>
 
             <div className="flex flex-wrap items-center  gap-4 mb-6">
                 <h1 className='text-2xl font-semibold text-center text-gray-900  bg-gray-200 rounded-sm'>ARCHIVOS - FORMATOS</h1>
