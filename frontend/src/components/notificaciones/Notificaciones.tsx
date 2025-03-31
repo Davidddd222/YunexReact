@@ -7,7 +7,7 @@ const Notificaciones: React.FC = () => {
       <Popover>
         <PopoverTrigger>
           <RiNotification2Line
-            className="text-gray-600 h-6 w-6 cursor-pointer hover:text-gray-800 transition-colors duration-200"
+            className="text-balck h-6 w-6 cursor-pointer hover:text-gray-800 transition-colors duration-200"
           />
         </PopoverTrigger>
         <PopoverContent 
