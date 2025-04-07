@@ -40,7 +40,7 @@ const Garantias = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <Header />
 
@@ -58,7 +58,8 @@ const Garantias = () => {
         <div
           className={`fixed lg:relative lg:translate-x-0 transform ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white h-screen p-4`}
+          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-black h-screen p-4`}
+          style={{ background: 'linear-gradient(0deg, rgba(34,110,195,1) 17%, rgba(140,180,224,1) 40%, rgba(255,255,255,1) 80%)' }}
         >
           <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
           <ul>
@@ -118,7 +119,7 @@ const Garantias = () => {
               {/* Submenú de Soat */}
               {isSoatMenuOpen && (
                 <ul
-                  className={`pl-4 mt-2 bg-transparent rounded-md border-2 transition-all duration-300 ease-in-out ${
+                  className={`pl-4 mt-2 bg-transparent rounded-md text-transparent text-base border-2 transition-all duration-300 ease-in-out ${
                     isSoatMenuOpen ? 'max-h-64' : 'max-h-0'
                   } overflow-hidden`}
                 >
@@ -128,7 +129,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('formatos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                   FORMATOS
                                 </a>
@@ -139,7 +140,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('procesos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                   PROCESOS
                                 </a>
@@ -150,7 +151,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('historial-modulos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-white hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                    HITORIAL DE MÓDULOS
                                 </a>

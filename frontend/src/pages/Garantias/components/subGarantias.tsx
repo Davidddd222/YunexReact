@@ -47,7 +47,7 @@ const SubGarantias: React.FC = () => {
     return (
         <div>
             <h1 className='text-3xl font-bold text-center text-gray-900 mb-2'>GARANTÍAS</h1>
-            <p className='text-xl font-semibold text-center text-gray-900 mb-6'>¡Bienvenidos a la  página de garantías!</p>
+            <p className='text-xl font-semibold text-center text-gray-900 mb-6'>¡Bienvenidos a la  sesión de garantías!</p>
 
             <div className="flex flex-wrap items-center  gap-4 mb-6">
             <h1 className='text-2xl font-semibold text-center text-gray-900  bg-gray-200 rounded-sm'>CLIENTES</h1>
