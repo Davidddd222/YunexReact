@@ -7,6 +7,7 @@ import Almacen from './pages/Almacen/Almacen';
 import Vehiculos from './pages/Vehiculos/Vehiculos';
 import Garantias from './pages/Garantias/Garantias';
 import SeguroObligatorio from './pages/Vehiculos/components/SeguroObligatorio';
+import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
   const {  isLoaded } = useAuth();
@@ -19,8 +20,8 @@ const App: React.FC = () => {
   return (
     <div className='bg'>
       <Routes>
-        {/* Redirige a Home si está logueado 
-        <Route path="/" element={isSignedIn ? <HomePage /> : <Navigate to="/sign-in" />} />*/}
+        {/* Redirige a Home si está logueado */}
+        <Route path="/" element={ <HomePage />} />
         
         {/* Ruta de inicio de sesión 
         <Route path="/sign-in" element={
