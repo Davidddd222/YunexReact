@@ -1,4 +1,4 @@
-import { Routes, Route,  } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react';
 import ReporteDeHora from './pages/ReporteDeHora/ReporteDeHora';
 import Laboratorio from './pages/Laboratorio/Laboratorio';
@@ -8,9 +8,11 @@ import Vehiculos from './pages/Vehiculos/Vehiculos';
 import Garantias from './pages/Garantias/Garantias';
 import SeguroObligatorio from './pages/Vehiculos/components/SeguroObligatorio';
 import HomePage from './pages/HomePage';
+import SignInPage from './pages/auth/sign-in/SignIn';
+import SignUpPage from './pages/auth/sign-up/SignUp';
 
 const App: React.FC = () => {
-  const {  isLoaded } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
   // Mientras Clerk está cargando la información, muestra un loading.
   if (!isLoaded) {
@@ -18,36 +20,28 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className='bg'>
+    <div className="bg">
       <Routes>
-        {/* Redirige a Home si está logueado */}
-        <Route path="/" element={ <HomePage />} />
+        {/* Ruta principal - redirige según estado de autenticación */}
+        <Route
+          path="/"
+          element={isSignedIn ? <HomePage /> : <Navigate to="/sign-in" />}
+        />
         
-        {/* Ruta de inicio de sesión 
-        <Route path="/sign-in" element={
-          !isSignedIn ? (
-            <SignInPage />
-          ) : (
-            <Navigate to="/" />  // Redirige al Home si ya está logueado
-          )
-        } /> */}
+        {/* Ruta de inicio de sesión */}
+        <Route path="/sign-in" element={!isSignedIn ? <SignInPage /> : <Navigate to="/" />} />
         
-        {/* Ruta de registro 
-        <Route path="/sign-up" element={
-          !isSignedIn ? (
-            <SignUpPage />
-          ) : (
-            <Navigate to="/" />  // Redirige al Home si ya está logueado
-          )
-        } /> */}
+        {/* Ruta de registro (Sign Up) */}
+        <Route path="/sign-up" element={<SignUpPage />} />
 
-        <Route path="/reporte-de-hora" element={<ReporteDeHora />} />  {/* Ruta para ReporteDeHora */}
-        <Route path="/laboratorio" element={<Laboratorio />} />  {/* Ruta para Laboratorio */}
-        <Route path="/ehs" element={<EHS />} />  {/* Ruta para EHS */}
-        <Route path="/almacen" element={<Almacen />} />  {/* Ruta para Almacen */}
-        <Route path="/vehiculos" element={<Vehiculos />} />  {/* Ruta para Vehicles */}
-        <Route path="/garantias" element={<Garantias />} />  {/* Ruta para Garantias */}
-        <Route path="/seguro-obligatorio" element={<SeguroObligatorio />} />  {/* Ruta para Garantias */}
+        {/* Rutas protegidas */}
+        <Route path="/reporte-de-hora" element={isSignedIn ? <ReporteDeHora /> : <Navigate to="/sign-in" />} />
+        <Route path="/laboratorio" element={isSignedIn ? <Laboratorio /> : <Navigate to="/sign-in" />} />
+        <Route path="/ehs" element={isSignedIn ? <EHS /> : <Navigate to="/sign-in" />} />
+        <Route path="/almacen" element={isSignedIn ? <Almacen /> : <Navigate to="/sign-in" />} />
+        <Route path="/vehiculos" element={isSignedIn ? <Vehiculos /> : <Navigate to="/sign-in" />} />
+        <Route path="/garantias" element={isSignedIn ? <Garantias /> : <Navigate to="/sign-in" />} />
+        <Route path="/seguro-obligatorio" element={isSignedIn ? <SeguroObligatorio /> : <Navigate to="/sign-in" />} />
       </Routes>
     </div>
   );

@@ -10,6 +10,7 @@ const Header = () => {
       <header className="w-full flex">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 w-full">
           {/* Logo */}
+          <Link to="/">
           <div className="relative w-[100px] h-[100px] flex items-center">
             <img
               src="/LogoYunex.svg"
@@ -17,6 +18,7 @@ const Header = () => {
               className="w-full h-full object-contain"
             />
           </div>
+          </Link>
 
           {/* Navegación */}
           <nav>
