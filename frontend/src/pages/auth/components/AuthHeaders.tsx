@@ -10,7 +10,7 @@ const AuthHeader = () => {
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 w-full">
           {/* Logo */}
           <Link to="/">
-          <div className="relative w-[100px] h-[100px] flex items-center">
+          <div className="relative w-[100px] h-[100px] flex items-center ml-4">
             <img
               src="/LogoYunex.svg"
               alt="Logo Yunex"
@@ -41,7 +41,7 @@ const AuthHeader = () => {
           </nav>
 
           {/* Bloque de autenticación */}
-          <div className="text-black flex gap-4 items-center">
+          <div className="text-black flex gap-4  items-center mr-8">
             
 
             {/* Notificaciones */}

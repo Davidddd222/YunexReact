@@ -56,16 +56,16 @@ const Vehiculos = () => {
 
         {/* Sidebar */}
         <div
-          className={`fixed lg:relative lg:translate-x-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-black h-screen p-4`}
+          className={`fixed lg:relative lg:translate-x-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out w-56 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-black h-screen p-4`}
           style={{ background: 'linear-gradient(0deg, rgba(34,110,195,1) 17%, rgba(140,180,224,1) 40%, rgba(255,255,255,1) 80%)' }}
         >
-          <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
+          <h2 className="text-xl font-semibold mb-4 text-center border-none bg-gray-200 rounded-sm h-8">Yunex Traffic</h2>
           <ul>
             {/* Opción Soat con submenú */}
 <li className="mb-2">
   <button
     onClick={() => toggleSoatMenu()} // Solo alternamos el estado del submenú, sin cambiar la sección activa
-    className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+    className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
       activeSection === 'soat'
         ? 'bg-blue-600 text-white'
         : 'hover:bg-blue-700 hover:text-white'
@@ -92,7 +92,7 @@ const Vehiculos = () => {
                         handleNavigation('soat'); // Cambia la sección activa a "soat"
                         handleSoatOptionChange('soat'); // Cambia la opción activa de Soat
                       }}
-                      className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                      className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                     >
                       SOAT
                     </a>
@@ -103,7 +103,7 @@ const Vehiculos = () => {
                         handleNavigation('soat'); // Cambia la sección activa a "soat"
                         handleSoatOptionChange('seguro-obligatorio');
                       }}
-                      className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                      className="block py-2 font-semibold text-sm px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                     >
                       SEGURO OBLIGATORIO
                     </a>
@@ -114,7 +114,7 @@ const Vehiculos = () => {
                         handleNavigation('soat'); // Cambia la sección activa a "soat"
                         handleSoatOptionChange('poliza-todo-riesgo');
                       }}
-                      className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                      className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                     >
                       POLIZA TODO RIESGO
                     </a>
@@ -125,7 +125,7 @@ const Vehiculos = () => {
                         handleNavigation('soat'); // Cambia la sección activa a "soat"
                         handleSoatOptionChange('revision-tecnomecanica');
                       }}
-                      className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                      className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                     >
                       REVISIÓN TECNOMECÁNICA
                     </a>
@@ -136,7 +136,7 @@ const Vehiculos = () => {
                         handleNavigation('soat'); // Cambia la sección activa a "soat"
                         handleSoatOptionChange('revision-pluma-articulada');
                       }}
-                      className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                      className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                     >
                       REVISIÓN PLUMA ARTICULADA
                     </a>
@@ -148,7 +148,7 @@ const Vehiculos = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('documentos')}
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
                   activeSection === 'documentos'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'

@@ -6,14 +6,15 @@ export default function SignInPage() {
     <>
     <AuthHeader/>
     <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-auto">
-      <div className="flex flex-col justify-center w-full lg:w-1/2 p-4 lg:p-8 lg:pr-2">
-        <h1 className="text-4xl lg:text-6xl font-semibold break-words">
+      
+      <div className="flex flex-col justify-center w-full lg:w-1/2 p-4 lg:p-8 lg:pr-2 mb-68">
+        <h1 className="text-4xl lg:text-6xl font-semibold break-words ml-5">
           ¡Uniting what’s <br /> next in traffic!
         </h1>
-        <p className="text-xl lg:text-2xl font-medium mt-4">We launch cities into the future.</p>
+        <p className="text-xl lg:text-2xl font-medium mt-4 ml-5">We launch cities into the future.</p>
       </div>
 
-      <div className="flex items-center justify-center w-full lg:w-1/2 p-4 lg:p-8 lg:pl-2">
+      <div className="flex items-center justify-center w-full lg:w-1/2 p-4 lg:p-8 lg:pl-2 mb-28">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold mb-4 ml-28">¡Inicia sesión!</h1>
           

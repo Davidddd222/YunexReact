@@ -58,15 +58,15 @@ const Garantias = () => {
         <div
           className={`fixed lg:relative lg:translate-x-0 transform ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out w-64 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-black h-screen p-4`}
+          } transition-transform duration-300 ease-in-out w-56 rounded-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-black h-screen p-4`}
           style={{ background: 'linear-gradient(0deg, rgba(34,110,195,1) 17%, rgba(140,180,224,1) 40%, rgba(255,255,255,1) 80%)' }}
         >
-          <h2 className="text-xl font-semibold mb-4 ml-2">Menú</h2>
+          <h2 className="text-xl font-semibold mb-4 text-center border-none bg-gray-200 rounded-sm h-8">Yunex Traffic</h2>
           <ul>
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('subGarantias')}
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
                   activeSection === 'subGarantias'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
@@ -78,7 +78,7 @@ const Garantias = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('subBalance')}
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
                   activeSection === 'subBalance'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
@@ -90,7 +90,7 @@ const Garantias = () => {
             <li className="mb-2">
               <button
                 onClick={() => handleNavigation('subGeneral')}
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
                   activeSection === 'subGeneral'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
@@ -102,7 +102,7 @@ const Garantias = () => {
             <li className="mb-2">
               <button
                 onClick={() => toggleSoatMenu()} // Solo alternamos el estado del submenú, sin cambiar la sección activa
-                className={`w-full p-2 text-left rounded-md text-lg font-semibold transition-colors duration-300 ${
+                className={`w-full p-2 text-left rounded-md text-base font-semibold transition-colors duration-300 ${
                   activeSection === 'archivos'
                     ? 'bg-blue-600 text-white'
                     : 'hover:bg-blue-700 hover:text-white'
@@ -129,7 +129,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('formatos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                   FORMATOS
                                 </a>
@@ -140,7 +140,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('procesos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                   PROCESOS
                                 </a>
@@ -151,7 +151,7 @@ const Garantias = () => {
                                     handleNavigation('archivos'); // Cambia la sección activa a "soat"
                                     handleSoatOptionChange('historial-modulos');
                                   }}
-                                  className="block py-2 px-4 rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
+                                  className="block py-2 px-4 font-semibold text-sm rounded-md text-black hover:bg-blue-600 transition-colors duration-300"
                                 >
                                    HITORIAL DE MÓDULOS
                                 </a>
