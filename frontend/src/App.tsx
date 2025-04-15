@@ -16,8 +16,8 @@ const App: React.FC = () => {
 
   // Mientras Clerk está cargando la información, muestra un loading.
   if (!isLoaded) {
-    return <div>Loading...</div>; // Aquí puedes personalizar con un spinner o algo más
-  }
+    return <div className="loading-spinner">Loading...</div>; // Un spinner aquí en lugar de un texto plano
+  }  
 
   return (
     <div className="bg">

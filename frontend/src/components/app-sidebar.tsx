@@ -14,27 +14,32 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Reporte de hora",
     url: "#",
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Laboratorio",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "EHS",
     url: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Almacen",
     url: "#",
     icon: Search,
   },
   {
-    title: "Settings",
+    title: "Vehículos",
+    url: "#",
+    icon: Settings,
+  },
+  {
+    title: "Garantías",
     url: "#",
     icon: Settings,
   },
@@ -42,12 +47,25 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="bg-green-500 mr-4">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="flex justify-center text-lg font-bold ">
+            Yunex Traffic
+          </SidebarGroupLabel>
+          
+          {/* Agregamos la línea aquí */}
+          <div
+            style={{
+              borderBottom: '1px solid #000',
+              width: '90%',
+              margin: '20px auto',
+              borderTop: '1px solid #000',
+            }}
+          />
+          
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="ml-2 font-semibold text">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
@@ -65,3 +83,4 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
+
