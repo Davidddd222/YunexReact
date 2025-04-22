@@ -3,13 +3,13 @@ import axios from 'axios';
 
 const EmpezarForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    equipoID: '',
-    tecnico: '',
-    fechaInicio: '',
-    descripcion: '',
-    prioridad: 'Baja',
-    horasEstimadas: 0,
-    estado: 'En revisión',
+    id_equipo: '',           // Cambié 'equipoID' a 'id_equipo'
+    fecha_inicio: '',        // Cambié 'fechaInicio' a 'fecha_inicio'
+    equipo: '',              // Cambié 'descripcion' a 'equipo'
+    falla_encontrada: '',    // Cambié 'fallaEncontrada' a 'falla_encontrada'
+    horas_estimadas: 0,
+    procedimiento: '',       // Cambié 'procedimiento' a 'procedimiento'
+    responsable: '',         // Cambié 'tecnico' a 'responsable'
   });
 
   // Manejo de cambios en los campos del formulario
@@ -26,8 +26,8 @@ const EmpezarForm: React.FC = () => {
     e.preventDefault();
     try {
       // Enviar los datos del formulario al backend
-      const response = await axios.post('http://localhost:4000/create-new', formData);
-      console.log('Incidencia creada', response.data);
+      const response = await axios.post('http://localhost:5000/api/reparaciones/empezar', formData);
+      console.log('Reparación iniciada', response.data);
       // Aquí puedes hacer algo con la respuesta, como redirigir o mostrar un mensaje
     } catch (error) {
       console.error('Error al crear la incidencia:', error);
@@ -42,118 +42,115 @@ const EmpezarForm: React.FC = () => {
 
           {/* Campo ID del equipo */}
           <div>
-            <label htmlFor="equipoID" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="id_equipo" className="block text-sm font-medium text-gray-700 mb-2">
               ID del equipo:
             </label>
             <input
               type="text"
-              id="equipoID"
-              name="equipoID"
+              id="id_equipo"
+              name="id_equipo"
               className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Ingresa el ID del equipo"
-              value={formData.equipoID}
+              value={formData.id_equipo}
               onChange={handleChange}
             />
           </div>
 
-          {/* Campo Técnico asignado */}
+          {/* Campo Fecha de inicio */}
           <div>
-            <label htmlFor="tecnico" className="block text-sm font-medium text-gray-700 mb-2">
-              Técnico asignado:
+            <label htmlFor="fecha_inicio" className="block text-sm font-medium text-gray-700 mb-2">
+              Fecha de inicio:
+            </label>
+            <input
+              type="date"
+              id="fecha_inicio"
+              name="fecha_inicio"
+              className="w-full px-4 py-3 rounded-md border border-gray-300"
+              value={formData.fecha_inicio}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Campo Equipo */}
+          <div>
+            <label htmlFor="equipo" className="block text-sm font-medium text-gray-700 mb-2">
+              Equipo:
+            </label>
+            <textarea
+              id="equipo"
+              name="equipo"
+              className="w-full px-4 py-3 rounded-md border border-gray-300"
+              rows={2}
+              placeholder="Describe el equipo..."
+              value={formData.equipo}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Campo Descripción de la Falla */}
+          <div>
+            <label htmlFor="falla_encontrada" className="block text-sm font-medium text-gray-700 mb-2">
+              Falla encontrada:
+            </label>
+            <textarea
+              id="falla_encontrada"
+              name="falla_encontrada"
+              className="w-full px-4 py-3 rounded-md border border-gray-300"
+              rows={3}
+              placeholder="Describe el problema..."
+              value={formData.falla_encontrada}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Campo Horas estimadas */}
+          <div>
+            <label htmlFor="horas_estimadas" className="block text-sm font-medium text-gray-700 mb-2">
+              Horas estimadas:
+            </label>
+            <input
+              type="number"
+              id="horas_estimadas"
+              name="horas_estimadas"
+              className="w-full px-4 py-3 rounded-md border border-gray-300"
+              placeholder="Ingresa las horas estimadas"
+              value={formData.horas_estimadas}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Campo Procedimiento */}
+          <div>
+            <label htmlFor="procedimiento" className="block text-sm font-medium text-gray-700 mb-2">
+              Procedimiento:
+            </label>
+            <textarea
+              id="procedimiento"
+              name="procedimiento"
+              className="w-full px-4 py-3 rounded-md border border-gray-300"
+              rows={3}
+              placeholder="Describe el procedimiento..."
+              value={formData.procedimiento}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Campo Responsable */}
+          <div>
+            <label htmlFor="responsable" className="block text-sm font-medium text-gray-700 mb-2">
+              Responsable:
             </label>
             <select
-              id="tecnico"
-              name="tecnico"
+              id="responsable"
+              name="responsable"
               className="w-full px-4 py-3 rounded-md border border-gray-300"
-              value={formData.tecnico}
+              value={formData.responsable}
               onChange={handleChange}
             >
               <option value="">Seleccionar técnico</option>
               <option value="Juan Pérez">Juan Pérez</option>
               <option value="Ana Gómez">Ana Gómez</option>
               <option value="Carlos López">Carlos López</option>
-            </select>
-          </div>
-
-          {/* Campo Fecha de inicio */}
-          <div>
-            <label htmlFor="fechaInicio" className="block text-sm font-medium text-gray-700 mb-2">
-              Fecha de inicio:
-            </label>
-            <input
-              type="date"
-              id="fechaInicio"
-              name="fechaInicio"
-              className="w-full px-4 py-3 rounded-md border border-gray-300"
-              value={formData.fechaInicio}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Campo Descripción del problema */}
-          <div>
-            <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700 mb-2">
-              Descripción del problema:
-            </label>
-            <textarea
-              id="descripcion"
-              name="descripcion"
-              className="w-full px-4 py-3 rounded-md border border-gray-300"
-              rows={4}
-              placeholder="Describe el problema..."
-              value={formData.descripcion}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Campo Prioridad */}
-          <div>
-            <label htmlFor="prioridad" className="block text-sm font-medium text-gray-700 mb-2">
-              Prioridad:
-            </label>
-            <select
-              id="prioridad"
-              name="prioridad"
-              className="w-full px-4 py-3 rounded-md border border-gray-300"
-              value={formData.prioridad}
-              onChange={handleChange}
-            >
-              <option value="Baja">Baja</option>
-              <option value="Media">Media</option>
-              <option value="Alta">Alta</option>
-            </select>
-          </div>
-
-          {/* Campo Horas estimadas */}
-          <div>
-            <label htmlFor="horasEstimadas" className="block text-sm font-medium text-gray-700 mb-2">
-              Horas estimadas:
-            </label>
-            <input
-              type="number"
-              id="horasEstimadas"
-              name="horasEstimadas"
-              className="w-full px-4 py-3 rounded-md border border-gray-300"
-              placeholder="Ingresa las horas estimadas"
-              value={formData.horasEstimadas}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Campo Estado inicial */}
-          <div>
-            <label htmlFor="estado" className="block text-sm font-medium text-gray-700 mb-2">
-              Estado inicial:
-            </label>
-            <select
-              id="estado"
-              name="estado"
-              className="w-full px-4 py-3 rounded-md border border-gray-300"
-              value={formData.estado}
-              onChange={handleChange}
-            >
-              <option value="En revisión">En revisión</option>
-              <option value="En proceso">En proceso</option>
             </select>
           </div>
 

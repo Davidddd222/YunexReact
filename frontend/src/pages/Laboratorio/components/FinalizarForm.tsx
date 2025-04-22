@@ -4,13 +4,12 @@ import axios from 'axios';
 const FinalizarForm: React.FC = () => {
   const [formData, setFormData] = useState({
     equipoID: '',
-    estadoModulo: 'Reparado',
-    descripcion: '',
-    fechaFinalizacion: '',
+    estado_modulo: 'Reparado', // Cambié a 'estado_modulo' para que coincida con el backend
+    fecha_finalizacion: '',    // Cambié a 'fecha_finalizacion' para que coincida con el backend
   });
 
   // Manejo de los cambios en los campos del formulario
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -22,8 +21,14 @@ const FinalizarForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Enviar los datos del formulario al backend
-      const response = await axios.put(`http://localhost:4000/api/update/${formData.equipoID}`, formData);
+      // Enviar los datos al backend (usando POST, ya que está configurado para POST en el backend)
+      const response = await axios.post(
+        `http://localhost:5000/api/reparaciones/finalizar/${formData.equipoID}`,
+        {
+          estado_modulo: formData.estado_modulo,  // Asegúrate de enviar estos datos correctamente
+          fecha_finalizacion: formData.fecha_finalizacion,
+        }
+      );
       console.log('Reparación finalizada', response.data);
       // Aquí puedes manejar la respuesta, como redirigir o mostrar un mensaje
     } catch (error) {
@@ -54,14 +59,14 @@ const FinalizarForm: React.FC = () => {
 
           {/* Campo Estado del módulo */}
           <div>
-            <label htmlFor="estadoModulo" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="estado_modulo" className="block text-sm font-medium text-gray-700 mb-2">
               Estado del módulo
             </label>
             <select
-              id="estadoModulo"
-              name="estadoModulo"
+              id="estado_modulo"
+              name="estado_modulo"
               className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              value={formData.estadoModulo}
+              value={formData.estado_modulo}
               onChange={handleChange}
             >
               <option value="Reparado">Reparado</option>
@@ -69,33 +74,17 @@ const FinalizarForm: React.FC = () => {
             </select>
           </div>
 
-          {/* Campo Descripción de la reparación */}
-          <div>
-            <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700 mb-2">
-              Descripción de la reparación
-            </label>
-            <textarea
-              id="descripcion"
-              name="descripcion"
-              className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              rows={4}
-              placeholder="Describe la reparación..."
-              value={formData.descripcion}
-              onChange={handleChange}
-            />
-          </div>
-
           {/* Campo Fecha de finalización */}
           <div>
-            <label htmlFor="fechaFinalizacion" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="fecha_finalizacion" className="block text-sm font-medium text-gray-700 mb-2">
               Fecha de finalización
             </label>
             <input
               type="date"
-              id="fechaFinalizacion"
-              name="fechaFinalizacion"
+              id="fecha_finalizacion"
+              name="fecha_finalizacion"
               className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              value={formData.fechaFinalizacion}
+              value={formData.fecha_finalizacion}
               onChange={handleChange}
             />
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import EmpezarForm from './EmpezarForm';
 import FinalizarForm from './FinalizarForm';
 import {
@@ -9,33 +10,46 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 
+// Definir el tipo de datos
+interface Reparacion {
+  id_equipo: string;
+  fecha_inicio: string;
+  equipo: string;
+  falla_encontrada: string;
+  estado_modulo: string;
+  horas_estimadas: number;
+  procedimiento: string;
+  responsable: string;
+  fecha_finalizacion?: string; // Puede ser opcional
+}
+
 const Reparaciones: React.FC = () => {
-  // Datos de ejemplo para la tabla
-  const [reparacionesData, ] = useState([
-    { id: 123, equipo: 'Computador HP', estado: 'En progreso', falla: 'Daño matriz', fecha: '2025-03-10', reparacionEstimada: '5', responsable: 'Juan Pérez' },
-    { id: 122, equipo: 'Computador Lenovo', estado: 'En revisión', falla: 'Daño matriz', fecha: '2025-03-10', reparacionEstimada: '1', responsable: 'Juan David' },
-  ]);
-
-  // Estado para el valor de búsqueda
+  const [reparacionesData, setReparacionesData] = useState<Reparacion[]>([]);
   const [query, setQuery] = useState('');
+  const [filteredReparaciones, setFilteredReparaciones] = useState<Reparacion[]>(reparacionesData);
 
-  // Estado para los resultados filtrados
-  const [filteredReparaciones, setFilteredReparaciones] = useState(reparacionesData);
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/reparaciones')
+      .then(response => {
+        setReparacionesData(response.data);
+        setFilteredReparaciones(response.data);
+      })
+      .catch(error => {
+        console.error("Hubo un error al obtener las reparaciones:", error);
+      });
+  }, []);
 
-  // Manejar el cambio en el input de búsqueda
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchQuery = e.target.value;
     setQuery(searchQuery);
   };
 
-  // Filtrar las reparaciones basadas en el query (ahora filtra por ID)
   useEffect(() => {
     if (query === '') {
       setFilteredReparaciones(reparacionesData);
     } else {
-      // Filtra por ID, convierte el query a número
       const filtered = reparacionesData.filter(item =>
-        item.id.toString().includes(query)  // Compara el ID convertido a string con el query
+        item.id_equipo.toString().includes(query)
       );
       setFilteredReparaciones(filtered);
     }
@@ -46,14 +60,10 @@ const Reparaciones: React.FC = () => {
       <h1 className='text-3xl font-bold text-center text-gray-900 mb-2'>REPARACIONES</h1>
       <p className='text-xl font-semibold text-center text-gray-900 mb-6'>Bienvenido a la página de reparaciones.</p>
 
-      {/* Contenedor para alinear los botones a la izquierda y el campo de búsqueda en el centro */}
       <div className="flex items-center justify-between mb-6">
-        {/* Botón para mostrar el formulario de Empezar */}
         <div className="flex">
           <Sheet>
-            <SheetTrigger
-              className="border border-blue-500 mr-4 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            >
+            <SheetTrigger className="border border-blue-500 mr-4 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500">
               Empezar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
@@ -65,11 +75,8 @@ const Reparaciones: React.FC = () => {
             </SheetContent>
           </Sheet>
 
-          {/* Botón para mostrar el formulario de Finalizar */}
           <Sheet>
-            <SheetTrigger
-              className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            >
+            <SheetTrigger className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md transition-all ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-1 focus:ring-blue-500">
               Finalizar reparación
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-[540px] bg-white">
@@ -82,7 +89,6 @@ const Reparaciones: React.FC = () => {
           </Sheet>
         </div>
 
-        {/* Campo de búsqueda centrado */}
         <input
           type="text"
           value={query}
@@ -92,7 +98,6 @@ const Reparaciones: React.FC = () => {
         />
       </div>
 
-      {/* Tabla de reparaciones */}
       <div className="overflow-x-auto mt-6">
         <table className="min-w-full table-auto border-collapse">
           <thead>
@@ -103,18 +108,20 @@ const Reparaciones: React.FC = () => {
               <th className="px-4 py-2 text-left font-semibold text-gray-700">Falla encontrada</th>
               <th className="px-4 py-2 text-left font-semibold text-gray-700">Estado módulo</th>
               <th className="px-4 py-2 text-left font-semibold text-gray-700">Reparación estimada(Horas)</th>
+              <th className="px-4 py-2 text-left font-semibold text-gray-700">Procedimiento</th>
               <th className="px-4 py-2 text-left font-semibold text-gray-700">Responsable</th>
             </tr>
           </thead>
           <tbody>
             {filteredReparaciones.map((item) => (
-              <tr key={item.id} className="border-t">
-                <td className="px-4 py-2 text-center">{item.id}</td>
-                <td className="px-4 py-2">{item.fecha}</td>
+              <tr key={item.id_equipo} className="border-t">
+                <td className="px-4 py-2 text-center">{item.id_equipo}</td>
+                <td className="px-4 py-2">{item.fecha_inicio}</td>
                 <td className="px-4 py-2 text-center">{item.equipo}</td>
-                <td className="px-4 py-2 text-center">{item.falla}</td>
-                <td className="px-4 py-2 text-center">{item.estado}</td>
-                <td className="px-4 py-2 text-center">{item.reparacionEstimada}</td>
+                <td className="px-4 py-2 text-center">{item.falla_encontrada}</td>
+                <td className="px-4 py-2 text-center">{item.estado_modulo}</td>
+                <td className="px-4 py-2 text-center">{item.horas_estimadas}</td>
+                <td className="px-4 py-2 text-center">{item.procedimiento}</td>
                 <td className="px-4 py-2 text-center">{item.responsable}</td>
               </tr>
             ))}
